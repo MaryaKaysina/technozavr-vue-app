@@ -1,0 +1,130 @@
+.loader {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin: auto;
+}
+.loader::before, .loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-item {
+  display: flex;
+  height: 70px;
+}
+.loader {
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  background: #9eff00;
+  -webkit-animation-name: pacmanDot;
+          animation-name: pacmanDot;
+  transform: translateX(14px);
+}
+.loader::before, .loader::after {
+  border-radius: 50%;
+  border: 14px solid #9eff00;
+  border-right-color: transparent;
+  top: -12px;
+  left: -24px;
+}
+.loader, .loader::before, .loader::after {
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.loader::before {
+  -webkit-animation-name: upperJaw;
+          animation-name: upperJaw;
+}
+.loader::after {
+  -webkit-animation-name: lowerJaw;
+          animation-name: lowerJaw;
+}
+
+@-webkit-keyframes pacmanDot {
+  0%, 50% {
+    background: #9eff00;
+  }
+  51%, 100% {
+    background: none;
+  }
+  0%, 100% {
+    transform: translateX(19px);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+}
+
+@keyframes pacmanDot {
+  0%, 50% {
+    background: #9eff00;
+  }
+  51%, 100% {
+    background: none;
+  }
+  0%, 100% {
+    transform: translateX(19px);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+}
+@-webkit-keyframes upperJaw {
+  50% {
+    transform: rotate(50deg) translate(2px, -4px);
+  }
+}
+@keyframes upperJaw {
+  50% {
+    transform: rotate(50deg) translate(2px, -4px);
+  }
+}
+@-webkit-keyframes lowerJaw {
+  50% {
+    transform: rotate(-50deg) translate(2px, 2px);
+  }
+}
+@keyframes lowerJaw {
+  50% {
+    transform: rotate(-50deg) translate(2px, 2px);
+  }
+}
+
+.loading-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ccc;
+}
+
+.loading-error span {
+  margin-bottom: 20px;
+}
+
+.loading-error .button--primery:not(:disabled):focus, 
+.loading-error .button--primery:not(:disabled):hover {
+  background-color: transparent;
+  color: #222;
+}
+
+.content {
+  min-height: 500px;
+}
+
+.header__count--loader {
+  position: relative;
+  top: -10px;
+  background-color: transparent;
+}
+
+.cart__loader {
+  height: 17px;
+  position: relative;
+  top: -18px;
+}
