@@ -14,3 +14,5 @@ npm run serve
 ```
 npm run build
 ```
+## Demo -> [ТЕХНОЗАВРРР](https://technozavr-vue-app.vercel.app/)
+
