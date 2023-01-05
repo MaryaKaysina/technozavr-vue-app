@@ -12,14 +12,15 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import formFieldMixin from '@/mixins/formFieldMixin';
 
-export default {
+export default defineComponent({
   props: {
     type: {
       default: 'text',
     },
   },
   mixins: [formFieldMixin],
-};
+});
 </script>

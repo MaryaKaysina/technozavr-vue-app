@@ -104,7 +104,7 @@
             <p>Доставка: <b>500 ₽</b></p>
             <p>Итого:
               <b>{{ getCountProducts }}</b> на сумму
-              <b>{{ (orderInfo.totalPrice + 500) | numberFormat }} ₽</b>
+              <b>{{ (orderInfo.totalPrice + 500)  }} ₽</b>
             </p>
           </div>
         </div>
@@ -114,14 +114,13 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import getNoun from '@/helpers/getNoun';
-import numberFormat from '@/helpers/numberFormat';
 import { mapGetters } from 'vuex';
 import OrderItem from '@/components/OrderItem.vue';
 
-export default {
+export default defineComponent({
   components: { OrderItem },
-  filters: { numberFormat },
   computed: {
     ...mapGetters({
       orderInfo: 'cartOrderInfo',
@@ -155,5 +154,5 @@ export default {
       immediate: true,
     },
   },
-};
+});
 </script>

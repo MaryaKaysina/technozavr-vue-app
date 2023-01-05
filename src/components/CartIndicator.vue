@@ -30,9 +30,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   computed: {
     ...mapGetters({
       products: 'cartDetailProducts',
@@ -40,5 +41,5 @@ export default {
       cartLoadingFailed: 'cartLoadingFailed',
     }),
   },
-};
+});
 </script>

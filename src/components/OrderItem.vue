@@ -1,7 +1,7 @@
 <template>
   <li class="cart__order">
     <h3>{{ item.product.title }}</h3>
-    <b>{{ (item.amount * item.product.price) | numberFormat }} ₽</b>
+    <b>{{ priceFormat }} ₽</b>
     <span>x {{ getCountProducts }}</span>
     <br/>
     <span>Артикул: {{ item.productId }}</span>
@@ -9,16 +9,19 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import getNoun from '@/helpers/getNoun';
 import numberFormat from '@/helpers/numberFormat';
 import { mapActions } from 'vuex';
 
-export default {
+export default defineComponent({
   props: ['item'],
-  filters: { numberFormat },
   computed: {
     getCountProducts() {
       return getNoun(this.item.amount, 'товар', 'товара', 'товаров');
+    },
+    priceFormat() {
+      return numberFormat(this.item.amount * this.item.product.price);
     },
   },
   methods: {
@@ -28,5 +31,5 @@ export default {
       'decrementCartProductAmount',
     ]),
   },
-};
+});
 </script>

@@ -21,7 +21,6 @@
         <label class="form__label form__label--select">
           <select
             class="form__select"
-            type="text"
             name="category"
             v-model.number="currentCategoryId"
           >
@@ -146,10 +145,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import axios from 'axios';
 import API_BASE_URL from '@/config';
 
-export default {
+export default defineComponent({
   data() {
     return {
       currentPriceFrom: 0,
@@ -200,13 +200,11 @@ export default {
     },
     loadCategories() {
       axios.get(`${API_BASE_URL}/api/productCategories`)
-        // eslint-disable-next-line no-return-assign
         .then((response) => this.categoriesData = response.data)
         .catch((error) => console.log(error));
     },
     loadColors() {
       axios.get(`${API_BASE_URL}/api/colors`)
-      // eslint-disable-next-line no-return-assign
         .then((response) => this.colorsData = response.data)
         .catch((error) => console.log(error));
     },
@@ -215,5 +213,5 @@ export default {
     this.loadCategories();
     this.loadColors();
   },
-};
+});
 </script>

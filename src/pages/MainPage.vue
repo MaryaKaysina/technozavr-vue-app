@@ -7,10 +7,10 @@
 
     <div class="content__catalog">
       <ProductFilter
-        :price-from.sync="filterPriceFrom"
-        :price-to.sync="filterPriceTo"
-        :categoryId.sync="filterCategoryId"
-        :colorId.sync="filterColorId"
+        v-model:price-from="filterPriceFrom"
+        v-model:price-to="filterPriceTo"
+        v-model:categoryId="filterCategoryId"
+        v-model:colorId="filterColorId"
       />
 
       <section class="catalog">
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import axios from 'axios';
 import API_BASE_URL from '@/config';
 import getNoun from '@/helpers/getNoun';
@@ -42,7 +43,7 @@ import ProductList from '@/components/ProductList';
 import BasePagination from '@/components/BasePagination';
 import ProductFilter from '@/components/ProductFilter';
 
-export default {
+export default defineComponent({
   components: { ProductList, BasePagination, ProductFilter },
   data() {
     return {
@@ -119,5 +120,5 @@ export default {
   created() {
     this.loadProducts();
   },
-};
+});
 </script>

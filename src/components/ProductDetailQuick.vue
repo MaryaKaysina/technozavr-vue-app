@@ -1,25 +1,5 @@
 <template>
   <div>
-    <div class="content__top">
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs__item">
-          <router-link class="breadcrumbs__link" :to="{ name: 'main' }">
-            Каталог
-          </router-link>
-        </li>
-        <li class="breadcrumbs__item">
-          <router-link class="breadcrumbs__link" :to="{ name: 'main' }">
-            {{ product.category.title }}
-          </router-link>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link">
-            {{ product.title }}
-          </a>
-        </li>
-      </ul>
-    </div>
-
     <section class="item">
       <div class="item__pics pics">
         <div class="pics__wrapper">
@@ -281,3 +261,15 @@ export default defineComponent({
   },
 });
 </script>
+
+
+<style scoped>
+.item {
+  grid-template-columns: 1fr;
+}
+
+.item__pics img {
+  height: 200px;
+  width: 100%;
+}
+</style>

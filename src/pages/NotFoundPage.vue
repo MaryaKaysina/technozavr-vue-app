@@ -1,9 +1,15 @@
 <template>
-  <h1>Страница не найдена</h1>
+  <main class="content container">
+    <div class="not-found__block">
+    <h1>Страница не найдена</h1>
+  </div>
+  </main>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
 
-};
+export default defineComponent({
+
+});
 </script>

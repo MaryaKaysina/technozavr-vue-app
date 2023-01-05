@@ -41,7 +41,7 @@
     </div>
 
     <b class="product__price">
-      {{ (item.amount * item.product.price) | numberFormat }} ₽
+      {{ totalPriceFormat }} ₽
     </b>
 
     <button
@@ -58,12 +58,12 @@
 </template>
 
 <script>
-import numberFormat from '@/helpers/numberFormat';
+import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
+import numberFormat from '@/helpers/numberFormat';
 
-export default {
+export default defineComponent({
   props: ['item'],
-  filters: { numberFormat },
   computed: {
     amount: {
       get() {
@@ -76,6 +76,9 @@ export default {
         );
       },
     },
+    totalPriceFormat() {
+      return numberFormat(this.item.amount * this.item.product.price);
+    },
   },
   methods: {
     ...mapActions([
@@ -84,5 +87,5 @@ export default {
       'decrementCartProductAmount',
     ]),
   },
-};
+});
 </script>

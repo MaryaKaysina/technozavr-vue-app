@@ -53,17 +53,19 @@
             Мы&nbsp;посчитаем стоимость доставки на&nbsp;следующем этапе
           </p>
           <p class="cart__price">
-            Итого: <span>{{ totalPrice | numberFormat }} ₽</span>
+            Итого: <span>{{ totalPriceFormat }} ₽</span>
           </p>
 
-          <router-link
-            v-if="products.length > 0"
-            class="cart__button button button--primery"
-            type="submit"
-            tag="button"
-            :to="{ name: 'order' }"
-          >
-            Оформить заказ
+          <router-link :to="{ name: 'order' }" custom v-slot="{ navigate }">
+            <button 
+              class="cart__button button button--primery"
+              @click="navigate" 
+              @keypress.enter="navigate" 
+              type="submit"
+              :disabled="!totalPrice"
+            >
+              Оформить заказ
+            </button>
           </router-link>
         </div>
       </form>
@@ -72,19 +74,19 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import getNoun from '@/helpers/getNoun';
 import numberFormat from '@/helpers/numberFormat';
 import { mapGetters, mapActions } from 'vuex';
 import CartItem from '@/components/CartItem';
 
-export default {
+export default defineComponent({
   components: { CartItem },
   data() {
     return {
       productData: null,
     };
   },
-  filters: { numberFormat },
   computed: {
     ...mapGetters({
       products: 'cartDetailProducts',
@@ -95,9 +97,12 @@ export default {
     getCountProducts() {
       return getNoun(this.products.length, 'товар', 'товара', 'товаров');
     },
+    totalPriceFormat() {
+      return numberFormat(this.totalPrice);
+    },
   },
   methods: {
     ...mapActions(['loadCart']),
   },
-};
+});
 </script>

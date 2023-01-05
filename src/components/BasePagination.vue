@@ -44,29 +44,30 @@
 </template>
 
 <script>
-export default {
-  model: {
-    prop: 'page',
-    event: 'paginate',
-  },
-  props: ['page', 'count', 'perPage'],
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  props: ['modelValue', 'count', 'perPage'],
   computed: {
+    page() {
+      return this.modelValue;
+    },
     pages() {
       return Math.ceil(this.count / this.perPage);
     },
   },
   methods: {
     paginate(page) {
-      this.$emit('paginate', page);
+      this.$emit('update:modelValue', page);
     },
     paginatePrev(page) {
       if (page === 1) return;
-      this.$emit('paginate', page - 1);
+      this.$emit('update:modelValue', page - 1);
     },
     paginateNext(page) {
       if (page === Math.ceil(this.count / this.perPage)) return;
-      this.$emit('paginate', page + 1);
+      this.$emit('update:modelValue', page + 1);
     },
   },
-};
+});
 </script>
